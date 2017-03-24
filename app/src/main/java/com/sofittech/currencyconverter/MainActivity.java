@@ -110,12 +110,10 @@ public class MainActivity extends AppCompatActivity {
 
 
                 value=convertedCurrency.getText().toString();
-                if(value.length()>=1){
+                if(value.length()>=1 ){
                     getConvertedCurrencyReturn(to,from,value);
                 }else {
                     Toast.makeText(MainActivity.this,"Please Enter Value",Toast.LENGTH_LONG).show();
-                }if (value.length()==0){
-                    Toast.makeText(MainActivity.this,"Value cannot be 0",Toast.LENGTH_LONG).show();
                 }
 
 
@@ -318,7 +316,7 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        getConvertedCurrency.setText(resultt);
+                        getConvertedCurrency.setText(resultt+" "+cRate);
                         getRate.setText("1"+" "+rRate+" "+"="+" "+rate+" "+cRate);
                        // Log.e("Get Result Converted",resultt);
                     }
