@@ -114,7 +114,10 @@ public class MainActivity extends AppCompatActivity {
                     getConvertedCurrencyReturn(to,from,value);
                 }else {
                     Toast.makeText(MainActivity.this,"Please Enter Value",Toast.LENGTH_LONG).show();
+                }if (value.length()==0){
+                    Toast.makeText(MainActivity.this,"Value cannot be 0",Toast.LENGTH_LONG).show();
                 }
+
 
             }
         });
