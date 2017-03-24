@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ECEFF1"
+    tools:context="com.sofittech.currencyconverter.MainActivity">
+
+
+        <fr.ganfra.materialspinner.MaterialSpinner
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:id="@+id/SecCurrency"
+            android:layout_height="90dp"
+            />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/swap"/>
+
+        <fr.ganfra.materialspinner.MaterialSpinner
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:id="@+id/firstCurrency"
+            android:layout_height="90dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:id="@+id/converted"
+            android:layout_margin="10dp"
+            android:background="#90A4AE"
+            android:inputType="numberDecimal"
+            android:maxLength="10"
+            android:imeOptions="actionDone"
+            android:layout_height="60dp" />
+
+
+        <Button
+            android:id="@+id/button"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Go"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/getconverted"
+            android:layout_margin="10dp"
+            android:layout_height="60dp"
+
+
+            android:background="#90A4AE"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="25dp"
+            android:id="@+id/rate"
+            android:textColor="#000"/>
+</LinearLayout>
