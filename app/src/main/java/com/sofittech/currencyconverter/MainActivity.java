@@ -48,12 +48,14 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> abbrivations= new ArrayList<>();
     ArrayList<Currency> currencies;
     JSONObject jsonObject;
-    public String to, from,value;
+    public String to, from;
+    String value="";
     public Button button;
     String getResult;
     String resultt;
     public OkHttpClient client;
     String cRate,rRate;
+    int mynum;
     Typeface typeface;
 
     /*{"AUD","BGN","BRL","CAD","CHF", "CNY", "CZK","DKK", "GBP", "HKD", "HRK", "HUF", "IDR", "ILS", "INR", "JPY",
@@ -75,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
         getRate=(TextView)findViewById(R.id.rate);
         swap.setImageResource(R.drawable.swap);
 
+        //button.setEnabled(false);
+        //button.setClickable(false);
         convertedCurrency.setText("");
         
         convertedCurrency.setTypeface(typeface);
@@ -85,6 +89,9 @@ public class MainActivity extends AppCompatActivity {
         convertedCurrency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //button.setEnabled(true);
+                //button.setClickable(true);
             }
         });
         getRate.setTypeface(typeface);
@@ -108,13 +115,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
-                value=convertedCurrency.getText().toString();
-                if(value.length()>=1 ){
+                if(convertedCurrency.length()>0) {
+                    value = convertedCurrency.getText().toString();
+                }
+                else{
+                    Toast.makeText(MainActivity.this, "", Toast.LENGTH_SHORT).show();
+                }
+               mynum=Integer.parseInt(value);
+                if(value.length()>=1){
+                   // button.setClickable(false);
                     getConvertedCurrencyReturn(to,from,value);
                 }else {
-                    Toast.makeText(MainActivity.this,"Please Enter Value",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"Please Enter some Value",Toast.LENGTH_LONG).show();
                 }
+                //button.setEnabled(false);
 
 
             }
