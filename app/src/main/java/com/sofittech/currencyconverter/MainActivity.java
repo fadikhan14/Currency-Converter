@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if(value.length()>=1){
 
-                        int theGuess = Integer.parseInt(value);
+                        double theGuess = Double.parseDouble(value);
 
                         if(theGuess!=0){
                         getConvertedCurrencyReturn(to,from,value);
