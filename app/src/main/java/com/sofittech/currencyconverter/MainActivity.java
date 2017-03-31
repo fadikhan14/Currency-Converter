@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> abbrivations= new ArrayList<>();
     ArrayList<Currency> currencies;
     JSONObject jsonObject;
-    public String to, from;
-    String value="";
+    public String to, from,value;
+
     public Button button;
     String getResult;
     String resultt;
@@ -78,9 +78,11 @@ public class MainActivity extends AppCompatActivity {
         swap.setImageResource(R.drawable.swap);
 
         //button.setEnabled(false);
-        //button.setClickable(false);
+        button.setClickable(false);
         convertedCurrency.setText("");
-        
+
+
+
         convertedCurrency.setTypeface(typeface);
         button.setTypeface(typeface);
         getConvertedCurrency.setTypeface(typeface);
@@ -91,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 //button.setEnabled(true);
-                //button.setClickable(true);
+                button.setClickable(true);
             }
         });
         getRate.setTypeface(typeface);
@@ -99,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         swap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                button.setClickable(true);
                 int spinner1Index = spinner.getSelectedItemPosition();
                // int s= spinner1.getSelectedItemPosition();
 
@@ -110,31 +113,40 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+//****************************************************************************************************
+        // This work to do
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(convertedCurrency.length()>0) {
-                    value = convertedCurrency.getText().toString();
-                }
-                else{
-                    Toast.makeText(MainActivity.this, "", Toast.LENGTH_SHORT).show();
-                }
-               mynum=Integer.parseInt(value);
-                if(value.length()>=1){
-                   // button.setClickable(false);
-                    getConvertedCurrencyReturn(to,from,value);
-                }else {
-                    Toast.makeText(MainActivity.this,"Please Enter some Value",Toast.LENGTH_LONG).show();
-                }
-                //button.setEnabled(false);
+                button.setClickable(false);
 
+                    value = convertedCurrency.getText().toString();
+
+                    if(value.length()>=1){
+
+                        int theGuess = Integer.parseInt(value);
+
+                        if(theGuess!=0){
+                        getConvertedCurrencyReturn(to,from,value);
+                        }else {
+                            Toast.makeText(MainActivity.this,"Value cannot be Zero",Toast.LENGTH_LONG).show();
+                        }
+                    }else{
+                        getConvertedCurrency.setText("");
+                        getRate.setText("");
+                        Toast.makeText(MainActivity.this,"Please Enter Value",Toast.LENGTH_LONG).show();
+                    }
+
+//                if(convertedCurrency==null){
+//                    getConvertedCurrency.setText("");
+//                    getRate.setText("");
+//                }
 
             }
         });
 
-
+//*******************************************************************************************************
          client = new OkHttpClient();
         final Request request = new Request.Builder()
                 .url("https://currencyconvertersofit.herokuapp.com/getCountries")
@@ -234,6 +246,7 @@ public class MainActivity extends AppCompatActivity {
 
                 to=abbrivations.get(i);
                 cRate=to;
+                button.setClickable(true);
 //                if(ITEMS.get(i).contains("United States")){
 //                    String CurrentString = abbrivations.get(i);
 //                    String[] separated = CurrentString.split(",");
@@ -255,10 +268,10 @@ public class MainActivity extends AppCompatActivity {
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
                 from=abbrivations.get(i);
-
                 rRate=from;
-
+                button.setClickable(true);
                 Log.e("rRate",rRate);
                 Log.e("Name from",abbrivations.get(i));
             }
@@ -268,6 +281,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
 
 
@@ -332,6 +347,12 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         getConvertedCurrency.setText(resultt+" "+cRate);
                         getRate.setText("1"+" "+rRate+" "+"="+" "+rate+" "+cRate);
+
+
+
+
+
+
                        // Log.e("Get Result Converted",resultt);
                     }
                 });
